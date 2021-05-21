@@ -1,6 +1,8 @@
 package com.example.JFTtPP;
 
+import com.models.Visitor;
 import com.myJDBC.DAO;
+import com.myJDBC.UserDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -19,8 +21,13 @@ public class LoginServlet extends HttpServlet {
         String name = request.getParameter("login");
         String pass = request.getParameter("pass");
         if(DAO.userExist(name,pass)){
+
+            request.getSession().setAttribute("visitor",new Visitor(UserDAO.getIdByName(name),name));
             request.getSession().setAttribute("authority",DAO.getAuthority(name,pass));
+            request.getSession().setAttribute("menu",DAO.getMenu());
             getServletContext().getRequestDispatcher("/menu.jsp").forward(request,response);
+        }else{
+
         }
 
     }

@@ -18,7 +18,7 @@ public class DAO {
         beverages
     }
 
-    enum State {
+    public enum State {
         fresh, preparing, delivering, done
     }
     //Work with users
@@ -66,10 +66,11 @@ public class DAO {
     }
 
     public static String getAuthority(String name, String pass){
-
+        Connection con=null;
+        PreparedStatement ps = null;
         try {
-            Connection con = Pool.getConnection();
-            PreparedStatement ps = con.prepareStatement("SELECT authority FROM users JOIN authority a on a.idA = users.authority_id WHERE name=? AND pass=? ");
+            con = Pool.getConnection();
+            ps = con.prepareStatement("SELECT authority FROM users JOIN authority a on a.idA = users.authority_id WHERE name=? AND pass=? ");
             ps.setString(1, name);
             ps.setString(2, pass);
             ResultSet rs = ps.executeQuery();
@@ -78,8 +79,36 @@ public class DAO {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
         return "";
+    }
+    public static int getIdByName(String name){
+
+        try {
+            Connection con = Pool.getConnection();
+            PreparedStatement ps = con.prepareStatement("SELECT idU FROM users  WHERE name=? ");
+            ps.setString(1, name);
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return Integer.parseInt(rs.getString("idU"));
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
     }
 
     //Work with dishes
@@ -181,6 +210,22 @@ public class DAO {
     }
 
     //Work with orders
+    public static void addOrder(State state,String address,String name,int sum) {
+        try {
+            Connection con = Pool.getConnection();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO orders value (default,?,?,?,?)");
+            ps.setString(1, state.name());
+            ps.setString(2,address);
+            ps.setString(3,name);
+            ps.setInt(4,sum);
+            ps.executeUpdate();
+            ps.close();
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public static void addOrderWithoutSum(State state,String address,String name) {
         try {
             Connection con = Pool.getConnection();
@@ -238,5 +283,20 @@ public class DAO {
         }
     }
 
+    public static int getIdMenuOrdersByName(String name){
+        try {
+            Connection con = Pool.getConnection();
+            PreparedStatement ps = con.prepareStatement("SELECT idO FROM orders  WHERE name=? ");
+            ps.setString(1, name);
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return Integer.parseInt(rs.getString("idO"));
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
 
 }

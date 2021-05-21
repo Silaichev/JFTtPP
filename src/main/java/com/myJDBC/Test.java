@@ -15,6 +15,6 @@ public class Test {
 /*        DAO.addDish("Soop", DAO.Category.starters,35);
 
  */
-        DAO.addDish("Coutlet",DAO.Category.meat,40);
+        System.out.println(UserDAO.getIdByName("Alina"));
     }
 }

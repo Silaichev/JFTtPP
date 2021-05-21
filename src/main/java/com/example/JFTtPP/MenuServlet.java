@@ -1,5 +1,8 @@
 package com.example.JFTtPP;
 
+import com.models.Menu;
+import com.models.Visitor;
+import com.myJDBC.DAO;
 import com.security.SecurityUtils;
 
 import javax.servlet.*;
@@ -12,17 +15,30 @@ public class MenuServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SecurityUtils.checkVisitor(request, response);
-        getServletContext().getRequestDispatcher("/menu.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] dishes = request.getParameterValues("dishes");
-        String num = request.getParameter(dishes[0]);
-        for(String str : dishes){
-            System.out.println(str+" - "+request.getParameter(str));
+        String address = request.getParameter("address");
+        String name = ((Visitor)request.getSession().getAttribute("visitor")).getName();
+        Menu menu = (Menu) request.getSession().getAttribute("menu");
+        int sum = 0;
+
+        DAO.addOrderWithoutSum(DAO.State.fresh,address,name);
+
+        for (String str : dishes) {
+            DAO.addMenuOrders(menu.getDishByName(str).getId(),
+                              DAO.getIdMenuOrdersByName(name),
+                              Integer.parseInt(request.getParameter(str)));
+            sum += menu.getDishByName(str).getPrice() * Integer.parseInt(request.getParameter(str));
         }
 
+        DAO.setSumByName(name,sum);
+        for (String str : dishes) {
+            System.out.println(str + " - " + request.getParameter(str));
+        }
 
     }
 }
