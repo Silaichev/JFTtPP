@@ -21,7 +21,7 @@ public class DAO {
     public enum State {
         fresh, preparing, delivering, done
     }
-    //Work with users
+   /* //Work with users
     public static void addUser(String name, String pass) {
         try {
             Connection con = Pool.getConnection();
@@ -109,9 +109,9 @@ public class DAO {
             throwables.printStackTrace();
         }
         return 0;
-    }
+    }*/
 
-    //Work with dishes
+    /*//Work with dishes
     public static void addDish(String name, Category category, int price) {
         try {
             Connection con = Pool.getConnection();
@@ -207,9 +207,9 @@ public class DAO {
             throwables.printStackTrace();
         }
         return menu;
-    }
+    }*/
 
-    //Work with orders
+    /*//Work with orders
     public static void addOrder(State state,String address,String name,int sum) {
         try {
             Connection con = Pool.getConnection();
@@ -266,8 +266,9 @@ public class DAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }
-    //Working with menu_orders
+    }*/
+
+    /*//Working with menu_orders
     public static void addMenuOrders(int idM, int idO, int quantity){
         try {
             Connection con = Pool.getConnection();
@@ -297,6 +298,6 @@ public class DAO {
             throwables.printStackTrace();
         }
         return 0;
-    }
+    }*/
 
 }

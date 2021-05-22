@@ -11,5 +11,9 @@ public class SecurityUtils {
                 request.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
             }
         }
-
+    public static void checkAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(!request.getSession().getAttribute("authority").equals("admin")){
+            request.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
+        }
+    }
 }

@@ -16,10 +16,10 @@
     </style>
 </head>
 <body>
-<%@ page import="com.myJDBC.DAO" %>
 <%@ page import="com.models.Menu" %>
 <%@ page import="com.models.Dish" %>
-<% Menu menu = DAO.getMenu();  %>
+<%@ page import="com.myJDBC.DishDAO" %>
+<% Menu menu = DishDAO.getMenu();  %>
     <form action="Menu" method="POST">
 
         Menu<br>

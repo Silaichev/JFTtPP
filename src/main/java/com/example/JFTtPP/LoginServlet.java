@@ -2,6 +2,7 @@ package com.example.JFTtPP;
 
 import com.models.Visitor;
 import com.myJDBC.DAO;
+import com.myJDBC.DishDAO;
 import com.myJDBC.UserDAO;
 
 import javax.servlet.*;
@@ -20,11 +21,11 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("login");
         String pass = request.getParameter("pass");
-        if(DAO.userExist(name,pass)){
+        if(UserDAO.userExist(name,pass)){
 
             request.getSession().setAttribute("visitor",new Visitor(UserDAO.getIdByName(name),name));
-            request.getSession().setAttribute("authority",DAO.getAuthority(name,pass));
-            request.getSession().setAttribute("menu",DAO.getMenu());
+            request.getSession().setAttribute("authority",UserDAO.getAuthority(name,pass));
+            request.getSession().setAttribute("menu", DishDAO.getMenu());
             getServletContext().getRequestDispatcher("/menu.jsp").forward(request,response);
         }else{
 
