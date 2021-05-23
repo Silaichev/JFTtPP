@@ -1,7 +1,7 @@
-package com.myJDBC;
+package com.JFTtPP.myJDBC;
 
-import com.models.Dish;
-import com.models.Menu;
+import com.JFTtPP.models.Dish;
+import com.JFTtPP.models.Menu;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DishDAO {
-
+    public enum Category {
+        starters, salads,
+        main_dishes, meat, fish_and_seafoods,
+        side_dishes, sauces, desserts,
+        beverages
+    }
     //Work with dishes
-    public static void addDish(String name, DAO.Category category, int price) {
+    public static void addDish(String name, DishDAO.Category category, int price) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("INSERT INTO menu VALUE (default,?,?,?)");
@@ -26,7 +31,7 @@ public class DishDAO {
         }
     }
 
-    public static void updateDishById(int id, String newName, DAO.Category category, int price) {
+    public static void updateDishById(int id, String newName, DishDAO.Category category, int price) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("UPDATE menu SET name=?,category=?,price=? WHERE idM=?");
@@ -42,7 +47,7 @@ public class DishDAO {
         }
     }
 
-    public static void updateDishByName(String oldName, String newName, DAO.Category category, int price) {
+    public static void updateDishByName(String oldName, String newName, DishDAO.Category category, int price) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("UPDATE menu SET name=?,category=?,price=? WHERE name=?");

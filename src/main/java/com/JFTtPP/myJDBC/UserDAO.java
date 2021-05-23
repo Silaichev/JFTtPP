@@ -1,4 +1,4 @@
-package com.myJDBC;
+package com.JFTtPP.myJDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

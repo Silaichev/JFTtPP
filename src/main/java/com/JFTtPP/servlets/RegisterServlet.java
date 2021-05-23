@@ -1,7 +1,7 @@
-package com.example.JFTtPP;
+package com.JFTtPP.servlets;
 
-import com.myJDBC.DAO;
-import com.myJDBC.UserDAO;
+import com.JFTtPP.myJDBC.UserDAO;
+import com.JFTtPP.services.UserService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -19,7 +19,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("username");
         String pass = request.getParameter("pass");
-        UserDAO.addUser(name,pass);
+        UserService.addUser(name,pass);
         request.setAttribute("name",name);
         request.setAttribute("pass",pass);
         getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);

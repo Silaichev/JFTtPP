@@ -1,4 +1,4 @@
-package com.models;
+package com.JFTtPP.models;
 
 public class Visitor {
     private int id;

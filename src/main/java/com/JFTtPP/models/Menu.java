@@ -1,6 +1,6 @@
-package com.models;
+package com.JFTtPP.models;
 
-import com.myJDBC.DAO;
+import com.JFTtPP.myJDBC.DishDAO;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Menu {
         list.add(dish);
     }
 
-    public List<Dish> getByCategory(DAO.Category category){
+    public List<Dish> getByCategory(DishDAO.Category category){
         List<Dish> temp = list.stream().filter(d->d.getCategory().equals(category.name())).collect(Collectors.toList());
         return temp;
     }

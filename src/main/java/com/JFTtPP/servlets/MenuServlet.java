@@ -1,11 +1,13 @@
-package com.example.JFTtPP;
+package com.JFTtPP.servlets;
 
-import com.models.Menu;
-import com.models.Visitor;
-import com.myJDBC.DAO;
-import com.myJDBC.MenuOrdersDAO;
-import com.myJDBC.OrderDAO;
-import com.security.SecurityUtils;
+import com.JFTtPP.models.Menu;
+import com.JFTtPP.models.Visitor;
+import com.JFTtPP.myJDBC.OrderDAO;
+import com.JFTtPP.myJDBC.MenuOrdersDAO;
+import com.JFTtPP.myJDBC.OrderDAO;
+import com.JFTtPP.security.SecurityUtils;
+import com.JFTtPP.services.MenuOrdersService;
+import com.JFTtPP.services.OrderService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -28,16 +30,16 @@ public class MenuServlet extends HttpServlet {
         Menu menu = (Menu) request.getSession().getAttribute("menu");
         int sum = 0;
 
-        OrderDAO.addOrderWithoutSum(DAO.State.fresh,address,name);
+        OrderDAO.addOrderWithoutSum(OrderDAO.State.fresh,address,name);
 
         for (String str : dishes) {
-            MenuOrdersDAO.addMenuOrders(menu.getDishByName(str).getId(),
-                              MenuOrdersDAO.getIdMenuOrdersByName(name),
+            MenuOrdersService.addMenuOrders(menu.getDishByName(str).getId(),
+                              MenuOrdersService.getIdMenuOrdersByName(name),
                               Integer.parseInt(request.getParameter(str)));
             sum += menu.getDishByName(str).getPrice() * Integer.parseInt(request.getParameter(str));
         }
 
-        OrderDAO.setSumByName(name,sum);
+        OrderService.setSumByName(name,sum);
         for (String str : dishes) {
             System.out.println(str + " - " + request.getParameter(str));
         }

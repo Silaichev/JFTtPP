@@ -1,15 +1,13 @@
-package com.models;
-
-import com.myJDBC.DAO;
+package com.JFTtPP.models;
 
 public class Order {
 
     private String name;
     private String address;
     private int sum;
-    private DAO.State state;
+    private String state;
 
-    public Order(String name, String address, int sum, DAO.State state) {
+    public Order(String name, String address, String state, int sum) {
         this.name = name;
         this.address = address;
         this.sum = sum;
@@ -40,11 +38,11 @@ public class Order {
         this.sum = sum;
     }
 
-    public DAO.State getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(DAO.State state) {
+    public void setState(String state) {
         this.state = state;
     }
 }

@@ -1,12 +1,20 @@
-package com.myJDBC;
+package com.JFTtPP.myJDBC;
+
+import com.JFTtPP.models.Order;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class OrderDAO {
+    public enum State {
+        fresh, preparing, delivering, done
+    }
     //Work with orders
-    public static void addOrder(DAO.State state, String address, String name, int sum) {
+    public static void addOrder(OrderDAO.State state, String address, String name, int sum) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("INSERT INTO orders value (default,?,?,?,?)");
@@ -22,7 +30,7 @@ public class OrderDAO {
         }
     }
 
-    public static void addOrderWithoutSum(DAO.State state, String address, String name) {
+    public static void addOrderWithoutSum(OrderDAO.State state, String address, String name) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("INSERT INTO orders value (default,?,?,?,null)");
@@ -49,7 +57,7 @@ public class OrderDAO {
             throwables.printStackTrace();
         }
     }
-    public static void setStateByName(String name, DAO.State oldState, DAO.State newState){
+    public static void setStateByName(String name, OrderDAO.State oldState, OrderDAO.State newState){
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("UPDATE orders SET state=? WHERE name=? AND state=?");
@@ -62,6 +70,32 @@ public class OrderDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+    public static List<Order> getOrders(){
+        List<Order> list = new LinkedList<>();
+
+        Connection con = null;
+        PreparedStatement s = null;
+
+        try {
+            con = Pool.getConnection();
+            s = con.prepareStatement("SELECT * FROM orders");
+            Order temp;
+            ResultSet rs = s.executeQuery();
+            while (rs.next()){
+                temp = new Order(rs.getString("name"),
+                                 rs.getString("address"),
+                                 rs.getString("state"),
+                                 rs.getInt("sum"));
+                list.add(temp);
+            }
+
+            s.close();
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
     }
 
 }

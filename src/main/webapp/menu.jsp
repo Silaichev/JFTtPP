@@ -16,9 +16,10 @@
     </style>
 </head>
 <body>
-<%@ page import="com.models.Menu" %>
-<%@ page import="com.models.Dish" %>
-<%@ page import="com.myJDBC.DishDAO" %>
+<%@ page import="com.JFTtPP.models.Menu" %>
+<%@ page import="com.JFTtPP.models.Dish" %>
+<%@ page import="com.JFTtPP.myJDBC.DishDAO" %>
+
 <% Menu menu = DishDAO.getMenu();  %>
     <form action="Menu" method="POST">
 
@@ -40,49 +41,49 @@
             </thead>
             <tbody>
                 <tr>
-                    <td> <% for(Dish d : menu.getByCategory(DAO.Category.starters)){
+                    <td> <% for(Dish d : menu.getByCategory(DishDAO.Category.starters)){
                         out.print("<input type=\"checkbox\" name=\"dishes\" value=\""+d.getName()+"\" />"+d.getName()+
                                 "<input type=\"number\" name=\""+d.getName()+"\"/>"+"<br>");
                     } %>
                     </td>
-                    <td> <% for(Dish d : menu.getByCategory(DAO.Category.meat)){
+                    <td> <% for(Dish d : menu.getByCategory(DishDAO.Category.meat)){
                         out.print("<input type=\"checkbox\" name=\"dishes\" value=\""+d.getName()+"\" />"+d.getName()+
                                 "<input type=\"number\" name=\""+d.getName()+"\"/>"+"<br>");
                     } %>
                     </td>
 
 
-                    <td> <% for(Dish d : menu.getByCategory(DAO.Category.salads)){
+                    <td> <% for(Dish d : menu.getByCategory(DishDAO.Category.salads)){
                         out.print("<input type=\"checkbox\" name=\"dishes\" value=\""+d.getName()+"\" />"+d.getName()+
                                 "<input type=\"number\" name=\""+d.getName()+"\"/>"+"<br>");
                     } %>
                     </td>
-                    <td> <% for(Dish d : menu.getByCategory(DAO.Category.main_dishes)){
+                    <td> <% for(Dish d : menu.getByCategory(DishDAO.Category.main_dishes)){
                         out.print("<input type=\"checkbox\" name=\"dishes\" value=\""+d.getName()+"\" />"+d.getName()+
                                 "<input type=\"number\" name=\""+d.getName()+"\"/>"+"<br>");
                     } %>
                     </td>
-                    <td> <% for(Dish d : menu.getByCategory(DAO.Category.fish_and_seafoods)){
+                    <td> <% for(Dish d : menu.getByCategory(DishDAO.Category.fish_and_seafoods)){
                         out.print("<input type=\"checkbox\" name=\"dishes\" value=\""+d.getName()+"\" />"+d.getName()+
                                 "<input type=\"number\" name=\""+d.getName()+"\"/>"+"<br>");
                     } %>
                     </td>
-                    <td> <% for(Dish d : menu.getByCategory(DAO.Category.side_dishes)){
+                    <td> <% for(Dish d : menu.getByCategory(DishDAO.Category.side_dishes)){
                         out.print("<input type=\"checkbox\" name=\"dishes\" value=\""+d.getName()+"\" />"+d.getName()+
                                 "<input type=\"number\" name=\""+d.getName()+"\"/>"+"<br>");
                     } %>
                     </td>
-                    <td> <% for(Dish d : menu.getByCategory(DAO.Category.sauces)){
+                    <td> <% for(Dish d : menu.getByCategory(DishDAO.Category.sauces)){
                         out.print("<input type=\"checkbox\" name=\"dishes\" value=\""+d.getName()+"\" />"+d.getName()+
                                 "<input type=\"number\" name=\""+d.getName()+"\"/>"+"<br>");
                     } %>
                     </td>
-                    <td> <% for(Dish d : menu.getByCategory(DAO.Category.desserts)){
+                    <td> <% for(Dish d : menu.getByCategory(DishDAO.Category.desserts)){
                         out.print("<input type=\"checkbox\" name=\"dishes\" value=\""+d.getName()+"\" />"+d.getName()+
                                 "<input type=\"number\" name=\""+d.getName()+"\"/>"+"<br>");
                     } %>
                     </td>
-                    <td> <% for(Dish d : menu.getByCategory(DAO.Category.beverages)){
+                    <td> <% for(Dish d : menu.getByCategory(DishDAO.Category.beverages)){
                         out.print("<input type=\"checkbox\" name=\"dishes\" value=\""+d.getName()+"\" />"+d.getName()+
                                 "<input type=\"number\" name=\""+d.getName()+"\"/>"+"<br>");
                     } %>

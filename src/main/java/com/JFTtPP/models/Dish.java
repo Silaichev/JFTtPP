@@ -1,7 +1,5 @@
-package com.models;
+package com.JFTtPP.models;
 
-
-import com.myJDBC.DAO;
 
 public class Dish {
 

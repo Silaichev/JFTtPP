@@ -1,4 +1,4 @@
-package com.myJDBC;
+package com.JFTtPP.myJDBC;
 
 import java.sql.*;
 
@@ -15,6 +15,6 @@ public class Test {
 /*        DAO.addDish("Soop", DAO.Category.starters,35);
 
  */
-        System.out.println(UserDAO.getIdByName("Alina"));
+        System.out.println(OrderDAO.getOrders().size());
     }
 }

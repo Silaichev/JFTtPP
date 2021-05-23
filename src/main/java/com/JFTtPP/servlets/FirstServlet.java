@@ -1,6 +1,6 @@
-package com.example.JFTtPP;
+package com.JFTtPP.servlets;
 
-import com.security.SecurityUtils;
+import com.JFTtPP.security.SecurityUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

@@ -1,4 +1,4 @@
-package com.example.JFTtPP;
+package com.JFTtPP.servlets;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

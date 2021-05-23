@@ -1,4 +1,4 @@
-package com.myJDBC;
+package com.JFTtPP.myJDBC;
 
 import java.beans.PropertyVetoException;
 import java.sql.*;
