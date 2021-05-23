@@ -35,14 +35,10 @@ public class MenuServlet extends HttpServlet {
         for (String str : dishes) {
             MenuOrdersService.addMenuOrders(menu.getDishByName(str).getId(),
                               MenuOrdersService.getIdMenuOrdersByName(name),
-                              Integer.parseInt(request.getParameter(str)));
+                              Integer.valueOf(request.getParameter(str)));
             sum += menu.getDishByName(str).getPrice() * Integer.parseInt(request.getParameter(str));
         }
-
         OrderService.setSumByName(name,sum);
-        for (String str : dishes) {
-            System.out.println(str + " - " + request.getParameter(str));
-        }
-
+        getServletContext().getRequestDispatcher("/preparing.jsp").forward(request, response);
     }
 }

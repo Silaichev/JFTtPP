@@ -4,9 +4,21 @@ import com.JFTtPP.models.Order;
 import com.JFTtPP.myJDBC.OrderDAO;
 import com.JFTtPP.myJDBC.OrderDAO;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 public class OrderService {
+
+    public static void setStateById(int id, String newState){
+        OrderDAO.setStateById(id,newState);
+    }
+    public static List<OrderDAO.State> getStates(){
+        List<OrderDAO.State> enumList =
+                new ArrayList<OrderDAO.State>(EnumSet.allOf(OrderDAO.State.class));
+        return enumList;
+    }
+
     public static void addOrder(OrderDAO.State state, String address, String name, int sum) {
         OrderDAO.addOrder(state, address, name, sum);
     }

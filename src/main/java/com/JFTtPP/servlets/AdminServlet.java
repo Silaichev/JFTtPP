@@ -1,6 +1,7 @@
 package com.JFTtPP.servlets;
 
 import com.JFTtPP.security.SecurityUtils;
+import com.JFTtPP.services.OrderService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,18 +12,15 @@ import java.io.IOException;
 public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        SecurityUtils.checkVisitor(request, response);
         SecurityUtils.checkAdmin(request, response);
-
         getServletConfig().getServletContext().getRequestDispatcher("/admin.jsp").forward(request, response);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String o = request.getParameter("button");
-        System.out.println(request.getParameterNames());
-        System.out.println(o);
-
+        System.out.println(request.getParameter("orderId"));
+        OrderService.setStateById(Integer.valueOf(request.getParameter("orderId")),request.getParameter("selectedState"));
 
     }
 }

@@ -71,6 +71,19 @@ public class OrderDAO {
             throwables.printStackTrace();
         }
     }
+    public static void setStateById(int id, String newState){
+        try {
+            Connection con = Pool.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE orders SET state=? WHERE idO=? ");
+            ps.setString(1,newState);
+            ps.setInt(2,id);
+            ps.executeUpdate();
+            ps.close();
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
     public static List<Order> getOrders(){
         List<Order> list = new LinkedList<>();
 
@@ -83,7 +96,8 @@ public class OrderDAO {
             Order temp;
             ResultSet rs = s.executeQuery();
             while (rs.next()){
-                temp = new Order(rs.getString("name"),
+                temp = new Order(rs.getInt("idO"),
+                                 rs.getString("name"),
                                  rs.getString("address"),
                                  rs.getString("state"),
                                  rs.getInt("sum"));
