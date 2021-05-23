@@ -1,5 +1,7 @@
 package com.JFTtPP.myJDBC;
 
+import com.JFTtPP.services.OrderService;
+
 import java.sql.*;
 
 public class Test {
@@ -12,9 +14,9 @@ public class Test {
         ResultSet rSet = pst.executeQuery();
         System.out.println(rSet.next());
         System.out.println(DAO.getAuthority("Alina","asdf"));*/
-/*        DAO.addDish("Soop", DAO.Category.starters,35);
+        /*        DAO.addDish("Soop", DAO.Category.starters,35);
 
- */
-        System.out.println(OrderDAO.getOrders().size());
+         */
+        System.out.println(OrderService.getOrdersWithoutDone().size());
     }
 }

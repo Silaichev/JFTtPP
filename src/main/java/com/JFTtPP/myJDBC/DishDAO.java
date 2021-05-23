@@ -15,6 +15,7 @@ public class DishDAO {
         side_dishes, sauces, desserts,
         beverages
     }
+
     //Work with dishes
     public static void addDish(String name, DishDAO.Category category, int price) {
         try {
@@ -88,16 +89,17 @@ public class DishDAO {
             throwables.printStackTrace();
         }
     }
-    public static Menu getMenu(){
+
+    public static Menu getMenu() {
         Connection con = null;
         PreparedStatement s = null;
         Menu menu = new Menu();
         try {
             con = Pool.getConnection();
             s = con.prepareStatement("SELECT * FROM menu");
-            Dish temp ;
+            Dish temp;
             ResultSet rs = s.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 temp = new Dish(rs.getInt("idM"),
                         rs.getString("name"),
                         rs.getString("category"),

@@ -79,7 +79,8 @@ public class UserDAO {
         }
         return "";
     }
-    public static int getIdByName(String name){
+
+    public static int getIdByName(String name) {
 
         try {
             Connection con = Pool.getConnection();

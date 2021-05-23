@@ -19,12 +19,12 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("username");
         String pass = request.getParameter("pass");
-        System.out.println(name);
-        System.out.println(pass);
+
         UserService.addUser(name,pass);
 
         request.setAttribute("name",name);
         request.setAttribute("pass",pass);
+
         if(name.length()==0|pass.length()==0){
             getServletContext().getRequestDispatcher("/register.jsp").forward(request,response);
         }

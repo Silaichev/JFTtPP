@@ -22,7 +22,7 @@ public class MenuOrdersDAO {
         }
     }
 
-    public static int getIdMenuOrdersByName(String name){
+    public static int getIdMenuOrdersByName(String name) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("SELECT idO FROM orders  WHERE name=? ");

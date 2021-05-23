@@ -8,31 +8,49 @@
 <html>
 <head>
     <title>Admin`s work</title>
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="res/css/main.css">
 </head>
 <body>
+<header>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Restaurant</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="Menu"><span class=""></span> Menu</a></li>
 
+                <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 <% List<Order> orders = new LinkedList<Order>();
-    orders = OrderDAO.getOrders();
-        request.setAttribute("orders", orders);
+    orders = OrderService.getOrdersWithoutDone();
+    request.setAttribute("orders", orders);
 
     List<OrderDAO.State> enumList = new LinkedList<>();
-            enumList = OrderService.getStates();
+    enumList = OrderService.getStates();
 
     request.setAttribute("states", enumList);
 %>
-
-
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>address</th>
-        <th>State</th>
-        <th>new State</th>
-        <th>Change</th>
-    </tr>
-    </thead>
-    <tbody>
+<section>
+    <table class="table" style="background-color: rgba(255,255,255,0.75);">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">address</th>
+            <th scope="col">State</th>
+            <th scope="col">new State</th>
+            <th scope="col">Change</th>
+        </tr>
+        </thead>
+        <tbody>
 
         <c:forEach var="order" items="${orders}">
             <tr>
@@ -53,8 +71,13 @@
             </tr>
         </c:forEach>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</section>
+
+
+
+
 
 </body>
 </html>

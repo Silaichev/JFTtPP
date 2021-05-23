@@ -13,27 +13,29 @@ public class Menu {
 
     }
 
-    public void addDish(Dish dish){
+    public void addDish(Dish dish) {
         list.add(dish);
     }
 
-    public List<Dish> getByCategory(DishDAO.Category category){
-        List<Dish> temp = list.stream().filter(d->d.getCategory().equals(category.name())).collect(Collectors.toList());
+    public List<Dish> getByCategory(DishDAO.Category category) {
+        List<Dish> temp = list.stream().filter(d -> d.getCategory().equals(category.name())).collect(Collectors.toList());
         return temp;
     }
-    public List<Dish> getAll(){
+
+    public List<Dish> getAll() {
         return list;
     }
- /*   public int getPriceByName(String dishName){
 
-       List<Dish> result = list.stream().filter(d->d.getName().equals(dishName)).collect(Collectors.toList());
-       if(result.size()>0){
-           return result.get(0).getPrice();
-       }
-       return 0;
-    }*/
-    public Dish getDishByName(String dishName){
-        List<Dish> result = list.stream().filter(d->d.getName().equals(dishName)).collect(Collectors.toList());
+    /*   public int getPriceByName(String dishName){
+
+          List<Dish> result = list.stream().filter(d->d.getName().equals(dishName)).collect(Collectors.toList());
+          if(result.size()>0){
+              return result.get(0).getPrice();
+          }
+          return 0;
+       }*/
+    public Dish getDishByName(String dishName) {
+        List<Dish> result = list.stream().filter(d -> d.getName().equals(dishName)).collect(Collectors.toList());
         return result.get(0);
     }
 

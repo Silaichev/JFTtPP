@@ -13,15 +13,16 @@ public class OrderDAO {
     public enum State {
         fresh, preparing, delivering, done
     }
+
     //Work with orders
     public static void addOrder(OrderDAO.State state, String address, String name, int sum) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("INSERT INTO orders value (default,?,?,?,?)");
             ps.setString(1, state.name());
-            ps.setString(2,address);
-            ps.setString(3,name);
-            ps.setInt(4,sum);
+            ps.setString(2, address);
+            ps.setString(3, name);
+            ps.setInt(4, sum);
             ps.executeUpdate();
             ps.close();
             con.close();
@@ -35,8 +36,8 @@ public class OrderDAO {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("INSERT INTO orders value (default,?,?,?,null)");
             ps.setString(1, state.name());
-            ps.setString(2,address);
-            ps.setString(3,name);
+            ps.setString(2, address);
+            ps.setString(3, name);
             ps.executeUpdate();
             ps.close();
             con.close();
@@ -44,12 +45,13 @@ public class OrderDAO {
             throwables.printStackTrace();
         }
     }
-    public static void setSumByName(String name, int sum){
+
+    public static void setSumByName(String name, int sum) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("UPDATE orders SET sum=? WHERE name=? AND state='fresh'");
-            ps.setInt(1,sum);
-            ps.setString(2,name);
+            ps.setInt(1, sum);
+            ps.setString(2, name);
             ps.executeUpdate();
             ps.close();
             con.close();
@@ -57,12 +59,13 @@ public class OrderDAO {
             throwables.printStackTrace();
         }
     }
-    public static void setStateByName(String name, OrderDAO.State oldState, OrderDAO.State newState){
+
+    public static void setStateByName(String name, OrderDAO.State oldState, OrderDAO.State newState) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("UPDATE orders SET state=? WHERE name=? AND state=?");
-            ps.setString(1,newState.name());
-            ps.setString(2,name);
+            ps.setString(1, newState.name());
+            ps.setString(2, name);
             ps.setString(3, oldState.name());
             ps.executeUpdate();
             ps.close();
@@ -71,12 +74,13 @@ public class OrderDAO {
             throwables.printStackTrace();
         }
     }
-    public static void setStateById(int id, String newState){
+
+    public static void setStateById(int id, String newState) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("UPDATE orders SET state=? WHERE idO=? ");
-            ps.setString(1,newState);
-            ps.setInt(2,id);
+            ps.setString(1, newState);
+            ps.setInt(2, id);
             ps.executeUpdate();
             ps.close();
             con.close();
@@ -84,7 +88,8 @@ public class OrderDAO {
             throwables.printStackTrace();
         }
     }
-    public static List<Order> getOrders(){
+
+    public static List<Order> getOrders() {
         List<Order> list = new LinkedList<>();
 
         Connection con = null;
@@ -95,12 +100,12 @@ public class OrderDAO {
             s = con.prepareStatement("SELECT * FROM orders");
             Order temp;
             ResultSet rs = s.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 temp = new Order(rs.getInt("idO"),
-                                 rs.getString("name"),
-                                 rs.getString("address"),
-                                 rs.getString("state"),
-                                 rs.getInt("sum"));
+                        rs.getString("name"),
+                        rs.getString("address"),
+                        rs.getString("state"),
+                        rs.getInt("sum"));
                 list.add(temp);
             }
 

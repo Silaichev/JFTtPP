@@ -19,8 +19,8 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("orderId"));
-        OrderService.setStateById(Integer.valueOf(request.getParameter("orderId")),request.getParameter("selectedState"));
-
+            System.out.println(request.getParameter("orderId"));
+            OrderService.setStateById(Integer.valueOf(request.getParameter("orderId")),request.getParameter("selectedState"));
+            getServletConfig().getServletContext().getRequestDispatcher("/resend.jsp").forward(request, response);
     }
 }

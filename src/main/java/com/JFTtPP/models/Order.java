@@ -8,8 +8,8 @@ public class Order {
     private int sum;
     private String state;
 
-    public Order(int id ,String name, String address, String state, int sum) {
-        this.id=id;
+    public Order(int id, String name, String address, String state, int sum) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.sum = sum;
