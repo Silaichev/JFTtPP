@@ -17,12 +17,12 @@ public class DishDAO {
     }
 
     //Work with dishes
-    public static void addDish(String name, DishDAO.Category category, int price) {
+    public static void addDish(String name, String category, int price) {
         try {
             Connection con = Pool.getConnection();
             PreparedStatement ps = con.prepareStatement("INSERT INTO menu VALUE (default,?,?,?)");
             ps.setString(1, name);
-            ps.setString(2, category.name());
+            ps.setString(2, category);
             ps.setInt(3, price);
             ps.executeUpdate();
             ps.close();

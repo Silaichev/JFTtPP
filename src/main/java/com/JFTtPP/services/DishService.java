@@ -11,7 +11,8 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class DishService {
-    public static void addDish(String name, DishDAO.Category category, int price) {
+
+    public static void addDish(String name, String category, int price) {
         DishDAO.addDish(name, category, price);
     }
 

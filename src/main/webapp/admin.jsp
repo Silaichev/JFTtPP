@@ -24,7 +24,7 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="Menu"><span class=""></span> Menu</a></li>
-
+                <li><a href="NewDish"><span class=""></span> New Dish</a></li>
                 <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
             </ul>
         </div>
