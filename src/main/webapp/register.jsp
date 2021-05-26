@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: silai
-  Date: 20.05.2021
-  Time: 19:17
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,15 +11,16 @@
     <link rel="stylesheet" href="res/css/main.css">
 </head>
 <body>
+<fmt:setBundle basename="header"/>
 <header>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Restaurant</a>
+                <a class="navbar-brand" href="#"><fmt:message key="logo"/></a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="Menu"><span class=""></span> Menu</a></li>
-                <li><a href="Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="Menu"><span class=""></span><fmt:message key="menu"/></a></li>
+                <li><a href="Login"><span class="glyphicon glyphicon-log-in"></span><fmt:message key="login"/></a></li>
             </ul>
         </div>
     </nav>

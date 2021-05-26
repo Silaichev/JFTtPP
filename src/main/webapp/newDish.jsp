@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.JFTtPP.services.DishService" %>
 <%@ page import="com.JFTtPP.myJDBC.DishDAO" %>
@@ -14,42 +15,46 @@
     <link rel="stylesheet" href="res/css/main.css">
 </head>
 <body>
-
+<fmt:setBundle basename="header"/>
 <header>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Restaurant</a>
+                <a class="navbar-brand" href="#"><fmt:message key="logo"/></a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="Menu"><span class=""></span> Menu</a></li>
+                <li><a href="Menu"><span class=""></span><fmt:message key="menu"/></a></li>
 
-                <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span><fmt:message key="logout"/></a></li>
             </ul>
         </div>
     </nav>
 </header>
 <% List<DishDAO.Category> categoryList = DishService.getCategories();
     request.setAttribute("categoryList",categoryList);%>
+
+<fmt:setBundle basename="category" var="cat"/>
+<fmt:setBundle basename="newDish" var="newDish"/>
 <section>
     <form class="whiteBack" action="NewDish" method="POST">
         <div class="form-group">
-            <label >Login</label>
-            <input name="name" type="text" class="form-control"  placeholder="Enter name">
+            <label ><fmt:message key="name" bundle="${newDish}"/> </label>
+            <input name="name" type="text" class="form-control" >
         </div>
         <div class="form-group">
             <select class="form-control"  name="selectedCategory">
                 <c:forEach var="category" items="${categoryList}">
-                    <option name="newStatus" value="${category}">${category.name()}</option>
+                    <option name="newStatus" value="${category}">
+                            <fmt:message key="${category.name()}" bundle="${cat}"/></option>
                 </c:forEach>
             </select>
         </div>
         <div class="form-group">
-            <label >Price</label>
-            <input name="price" type="text" class="form-control"  placeholder="Enter price">
+            <label ><fmt:message key="price" bundle="${newDish}"/> </label>
+            <input name="price" type="text" class="form-control" >
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success"><fmt:message key="submit" bundle="${newDish}"/> </button>
         </div>
     </form>
 

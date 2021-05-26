@@ -10,12 +10,34 @@ body {
 section a{
     margin-top: 50%;
 }
-.minInput{
-    display: inline-block;
-    justify-content: flex-end;
-    width: 15%;
-    padding: 1%;
+
+.table-menu {
+    width: 100%; /* Ширина таблицы */
 }
+
+.tr-menu {
+    display: inline;
+}
+
+.td-menu {
+    vertical-align: top; /* Выравнивание по верхнему краю ячеек */
+    width: 10%;
+}
+.th-menu {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    width: 10%;
+}
+/*@media all and (min-width: 1200px) {
+    tr {
+        display: table-row;
+    }
+    td {
+        float: none;
+        min-width: 300px;
+    }
+}*/
 
 .menu{
     width: 100%;

@@ -1,5 +1,5 @@
 package com.JFTtPP.servlets;
-
+import javax.servlet.jsp.jstl.core.Config;
 import com.JFTtPP.models.Visitor;
 import com.JFTtPP.myJDBC.DishDAO;
 import com.JFTtPP.myJDBC.UserDAO;
@@ -20,6 +20,15 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        switch (request.getParameter("lang")){
+            case "ru" :
+                Config.set( request.getSession(), Config.FMT_LOCALE, new java.util.Locale("ru", "RU"));
+                break;
+            case "eng" :
+                Config.set( request.getSession(), Config.FMT_LOCALE, new java.util.Locale("en", "US"));
+                break;
+        }
+
         String name = request.getParameter("login");
         String pass = request.getParameter("pass");
         //Проверка есть ли вообще такой пользователь в БД

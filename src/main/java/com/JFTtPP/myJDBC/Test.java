@@ -3,6 +3,8 @@ package com.JFTtPP.myJDBC;
 import com.JFTtPP.services.OrderService;
 
 import java.sql.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Test {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
@@ -17,6 +19,7 @@ public class Test {
         /*        DAO.addDish("Soop", DAO.Category.starters,35);
 
          */
-        System.out.println(OrderService.getOrdersWithoutDone().size());
+
+        /*ResourceBundle bundle = ResourceBundle.getBundle("Messages", Locale.);*/
     }
 }
