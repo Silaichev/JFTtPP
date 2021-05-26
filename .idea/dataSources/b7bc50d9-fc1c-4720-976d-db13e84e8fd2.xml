@@ -929,9 +929,7 @@ APPLICATION_PASSWORD_ADMIN,AUDIT_ADMIN,BACKUP_ADMIN,BINLOG_ADMIN,BINLOG_ENCRYPTI
     <table id="290" parent="4" name="menu"/>
     <table id="291" parent="4" name="menu_orders"/>
     <table id="292" parent="4" name="orders"/>
-    <table id="293" parent="4" name="users">
-      <Collation>utf8_unicode_ci</Collation>
-    </table>
+    <table id="293" parent="4" name="users"/>
     <column id="294" parent="289" name="idA">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
@@ -1045,13 +1043,11 @@ APPLICATION_PASSWORD_ADMIN,AUDIT_ADMIN,BACKUP_ADMIN,BINLOG_ADMIN,BINLOG_ENCRYPTI
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
-      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="317" parent="293" name="pass">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
-      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="318" parent="293" name="authority_id">
       <Position>4</Position>
